@@ -21,7 +21,7 @@ const gf = new GiphyFetch(giphyKey);
 const app = express();
 const slack = new IncomingWebhook(slackHookUrl);
 
-const terms = ["party", "awesome", "love"];
+const terms = ["party", "awesome", "you rock", "satellite", "congrats"];
 
 app.get("/", async (req, res) => {
   res.json("ok");
