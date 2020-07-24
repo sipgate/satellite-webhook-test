@@ -23,6 +23,10 @@ const slack = new IncomingWebhook(slackHookUrl);
 
 const terms = ["party", "awesome", "love"];
 
+app.get("/", async (req, res) => {
+  res.json("ok");
+});
+
 app.post("/", async (req, res) => {
   const gifs = await gf.search(terms[Math.floor(Math.random() * terms.length)]);
   const gif = gifs.data.find(Boolean);
