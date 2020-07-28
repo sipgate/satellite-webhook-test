@@ -21,22 +21,15 @@ const gf = new GiphyFetch(giphyKey);
 const app = express();
 const slack = new IncomingWebhook(slackHookUrl);
 
-const terms = [
-  "party",
-  "awesome",
-  "you rock",
-  "satellite",
-  "congrats",
-  "applause",
-];
+const terms = ["party", "you rock", "satellite", "applause"];
 
 app.get("/", async (req, res) => {
   res.json("ok");
 });
 
 app.post("/", async (req, res) => {
-  const gifs = await gf.search(terms[Math.floor(Math.random() * terms.length)]);
-  console.log("Found gifs", gifs);
+  const term = terms[Math.floor(Math.random() * terms.length)];
+  const gifs = await gf.search(term);
 
   const gif = gifs.data.find(Boolean);
   const url = gif?.images.original.url;
@@ -49,7 +42,7 @@ app.post("/", async (req, res) => {
 
   console.log("Sending url to slack channel", url);
 
-  slack.send(url);
+  // slack.send(url);
 
   res.json("ok");
 });
