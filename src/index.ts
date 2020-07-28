@@ -36,6 +36,8 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   const gifs = await gf.search(terms[Math.floor(Math.random() * terms.length)]);
+  console.log("Found gifs", gifs);
+
   const gif = gifs.data.find(Boolean);
   const url = gif?.images.original.url;
 
