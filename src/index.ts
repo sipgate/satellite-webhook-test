@@ -29,6 +29,7 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   const term = terms[Math.floor(Math.random() * terms.length)];
+  console.log("Search gif for", term);
   const gifs = await gf.search(term);
 
   const gif = gifs.data.find(Boolean);
@@ -42,7 +43,7 @@ app.post("/", async (req, res) => {
 
   console.log("Sending url to slack channel", url);
 
-  // slack.send(url);
+  slack.send(url);
 
   res.json("ok");
 });
