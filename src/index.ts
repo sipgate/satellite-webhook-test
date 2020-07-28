@@ -40,9 +40,13 @@ app.post("/", async (req, res) => {
   const url = gif?.images.original.url;
 
   if (!url) {
+    console.error("No gif found", gif);
     res.status(404).json("Not found");
     return;
   }
+
+  console.log("Sending url to slack channel", url);
+
   slack.send(url);
 
   res.json("ok");
